@@ -1311,7 +1311,9 @@ MonoBehaviour:
   movementSpeed: 10
   health: 20
   SlideCollider: {fileID: 343858582}
-  damageSources: []
+  damageSources:
+  - EnemyK
+  - EnemyGun
   groundPoints:
   - {fileID: 2105295912}
   - {fileID: 233669610}
@@ -1319,7 +1321,7 @@ MonoBehaviour:
   groundRadius: 0.2
   whatIsGround:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4294967039
   jumpForce: 400
   airControl: 0
 --- !u!61 &608653974
@@ -1345,7 +1347,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.58, y: 4.86}
+  m_Size: {x: 1.45, y: 4.86}
   m_EdgeRadius: 0
 --- !u!1 &611778810
 GameObject:
@@ -1958,7 +1960,7 @@ GameObject:
   - component: {fileID: 994980106}
   - component: {fileID: 994980105}
   - component: {fileID: 994980107}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2963,7 +2965,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 34f9a128935690d47959ff86bbd09fd7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 54ea97b767c534f48b05848defe8499d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2984,6 +2986,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 994980104}
+  - {fileID: 2109719464}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3000,7 +3003,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 4
   health: 40
-  SlideCollider: {fileID: 0}
+  SlideCollider: {fileID: 2109719465}
   damageSources:
   - SlideDamage
   attack: 1
@@ -3048,7 +3051,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.37, y: 5.1666827}
+  m_Size: {x: 1.9, y: 5.1666827}
   m_EdgeRadius: 0
 --- !u!114 &1351538578
 MonoBehaviour:
@@ -4096,3 +4099,55 @@ Transform:
   m_Father: {fileID: 608653971}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2109719463
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2109719464}
+  - component: {fileID: 2109719465}
+  m_Layer: 0
+  m_Name: KnifeCollider
+  m_TagString: EnemyK
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2109719464
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2109719463}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1.5, y: -1.06, z: 0.08318347}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1351538574}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!68 &2109719465
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2109719463}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.2, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: 0.12759936, y: -1.3113847}
+  - {x: 0.1361208, y: -0.900661}
+  - {x: 0.15020859, y: -0.20933294}
+  - {x: 0.15840614, y: 2.8497548}
+  - {x: 0.6376848, y: 2.7767148}
+  - {x: 0.6619518, y: 0.25927782}
+  - {x: 0.6758411, y: -1.0412188}
+  - {x: 0.6543529, y: -1.3214936}

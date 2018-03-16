@@ -171,9 +171,20 @@ public class Player : Character {
             MyAnimator.SetLayerWeight(1, 0);
         }
     }
-
+       
     public override IEnumerator TakeDamage()
     {
+        health -= 10;
+
+        if (!IsDead)
+        {
+            MyAnimator.SetTrigger("damage");
+        }
+        else
+        {
+            MyAnimator.SetLayerWeight(1, 0);
+            MyAnimator.SetTrigger("die");
+        }
         yield return null;
     }
 }
