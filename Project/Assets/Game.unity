@@ -1957,6 +1957,7 @@ GameObject:
   - component: {fileID: 994980104}
   - component: {fileID: 994980106}
   - component: {fileID: 994980105}
+  - component: {fileID: 994980107}
   m_Layer: 0
   m_Name: Sight
   m_TagString: Untagged
@@ -2014,6 +2015,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 8.450119, y: 1.0708323}
   m_EdgeRadius: 0
+--- !u!114 &994980107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 994980103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b87223b3eabac2a46b276551b92e2eea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  other: {fileID: 343858582}
 --- !u!4 &1006935584 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4830006858758040, guid: 26256ea047f1fe84a9de522321e323d8,
@@ -2986,7 +2999,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 4
-  health: 20
+  health: 40
   SlideCollider: {fileID: 0}
   damageSources:
   - SlideDamage
