@@ -13,13 +13,6 @@ public class AttackBehaviour : StateMachineBehaviour {
 
         animator.SetFloat("speed", 0);
 
-        //if(animator.tag == "Player")
-        //{
-        //    if(Player.Instance.OnGround)
-        //    {
-        //        Player.Instance.MyRigidbody.velocity = Vector2.zero;
-        //    }
-        //}
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -31,6 +24,7 @@ public class AttackBehaviour : StateMachineBehaviour {
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.GetComponent<Enemy>().Attack = false;
+        animator.GetComponent<Character>().knifeCollider.enabled = false;
         animator.ResetTrigger("attack");
     }
 

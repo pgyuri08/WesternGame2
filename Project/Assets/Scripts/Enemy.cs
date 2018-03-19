@@ -28,6 +28,7 @@ public class Enemy : Character {
     [SerializeField]
     private float meleeRange;
 
+
     public bool InMeleeRange
     {
         get
@@ -68,7 +69,6 @@ public class Enemy : Character {
             {
                 currentState.Execute();
             }
-            HandleInput();
 
             LookAtTarget();
         }
@@ -123,16 +123,8 @@ public class Enemy : Character {
         return facingRight ? Vector2.right : Vector2.left;
     }
 
-    private void HandleInput()
-    {
-        if (Input.GetKeyDown(KeyCode.LeftAlt))
-        {
-            //MyAnimator.SetTrigger("attack");
-            attack = true;
-        }
-    }
 
-    private void HandleAttacks()
+    public void HandleAttacks()
     {
         if (attack)
         {

@@ -18,6 +18,17 @@ public abstract class Character : MonoBehaviour {
     public EdgeCollider2D SlideCollider;
 
     [SerializeField]
+    public EdgeCollider2D knifeCollider;
+
+    public EdgeCollider2D KnifeCollider
+    {
+        get
+        {
+            return knifeCollider;
+        }
+    }
+
+    [SerializeField]
     private List<string> damageSources;
 
     public abstract bool IsDead { get; }
@@ -25,6 +36,7 @@ public abstract class Character : MonoBehaviour {
     public bool Attack { get; set; }
 
     public bool TakingDamage { get; set; }
+
 
     // Use this for initialization
     public virtual void Start ()
@@ -53,6 +65,11 @@ public abstract class Character : MonoBehaviour {
         {
             StartCoroutine(TakeDamage());
         }
+    }
+
+    public void MeleeAttack()
+    {
+        KnifeCollider.enabled = true;
     }
 
     public void ChangeDirection()

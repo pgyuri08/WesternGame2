@@ -1311,6 +1311,7 @@ MonoBehaviour:
   movementSpeed: 10
   health: 20
   SlideCollider: {fileID: 343858582}
+  knifeCollider: {fileID: 2109719465}
   damageSources:
   - EnemyK
   - EnemyGun
@@ -1672,7 +1673,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &895107899
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3002,8 +3003,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 4
-  health: 40
-  SlideCollider: {fileID: 2109719465}
+  health: 10
+  SlideCollider: {fileID: 0}
+  knifeCollider: {fileID: 2109719465}
   damageSources:
   - SlideDamage
   attack: 1
@@ -4140,14 +4142,16 @@ EdgeCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.2, y: 0}
+  m_Offset: {x: -0.05, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 0.12759936, y: -1.3113847}
-  - {x: 0.1361208, y: -0.900661}
-  - {x: 0.15020859, y: -0.20933294}
-  - {x: 0.15840614, y: 2.8497548}
-  - {x: 0.6376848, y: 2.7767148}
-  - {x: 0.6619518, y: 0.25927782}
-  - {x: 0.6758411, y: -1.0412188}
-  - {x: 0.6543529, y: -1.3214936}
+  - {x: -0.41872025, y: -1.0542932}
+  - {x: -0.50660795, y: -0.93279743}
+  - {x: -0.5567934, y: -0.40215158}
+  - {x: -0.5485956, y: 2.1106162}
+  - {x: 0.38059276, y: 1.9411674}
+  - {x: 1.0011737, y: 1.3043084}
+  - {x: 1.1669424, y: 0.6665716}
+  - {x: 1.079725, y: -0.12635946}
+  - {x: 0.48302227, y: -0.912673}
+  - {x: -0.3418774, y: -1.0644021}

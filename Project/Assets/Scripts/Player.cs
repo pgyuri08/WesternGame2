@@ -59,22 +59,35 @@ public class Player : Character {
 
     void Update()
     {
-        HandleInput();
+        if (!TakingDamage && !IsDead)
+        {
+            if (transform.position.y <= -14f)
+            {
+                myRigidbody.velocity = Vector2.zero;
+               // transform.position - startPos;
+            }
+            HandleInput();
+
+        }
     }
     // Update is called once per frame
     void FixedUpdate ()
     {
-        isGrounded = IsGrounded();
+        if (!TakingDamage && !IsDead)
+        {
+            isGrounded = IsGrounded();
 
-        float horizontal = Input.GetAxis("Horizontal");
+            float horizontal = Input.GetAxis("Horizontal");
 
-        HandleMovement(horizontal);
+            HandleMovement(horizontal);
 
-        Flip(horizontal);
+            Flip(horizontal);
 
-        HandleLayers();
+            HandleLayers();
 
-        ResetValues();
+            ResetValues();
+        }
+
 	}
 
 
