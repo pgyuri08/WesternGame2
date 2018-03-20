@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public delegate void DeadEventHandler();
+
 public class Player : Character {
 
     //extra line
     public static Player instance;
+
+    public event DeadEventHandler Dead;
 
     public static Player Instance
     {
@@ -23,11 +27,23 @@ public class Player : Character {
     {
         get
         {
+            if(health <= 0)
+            {
+                OnDead();
+            }
+
             return health <=0;
         }
     }
 
     private Rigidbody2D myRigidbody;
+
+    private bool immortal = false;
+
+    [SerializeField]
+    private float immortalTime;
+
+    private SpriteRenderer spriteRenderer;
 
     private bool slide;
 
@@ -54,6 +70,8 @@ public class Player : Character {
     public override void Start ()
     {
         base.Start();
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
         myRigidbody = GetComponent<Rigidbody2D>();
 	}
 
@@ -90,6 +108,13 @@ public class Player : Character {
 
 	}
 
+    public void OnDead()
+    {
+        if (Dead != null)
+        {
+            Dead();
+        }
+    }
 
     private void HandleMovement(float horizontal)
     {
@@ -184,21 +209,40 @@ public class Player : Character {
             MyAnimator.SetLayerWeight(1, 0);
         }
     }
+
+    private IEnumerator IndicateImmortal()
+    {
+        while (immortal)
+        {
+            spriteRenderer.enabled = false;
+            yield return new WaitForSeconds(.1f);
+            spriteRenderer.enabled = true;
+            yield return new WaitForSeconds(.1f);
+        }
+    }
        
     public override IEnumerator TakeDamage()
     {
-        health -= 10;
+        if (!immortal)
+        {
+            health -= 10;
 
-        if (!IsDead)
-        {
-            MyAnimator.SetTrigger("damage");
+            if (!IsDead)
+            {
+                MyAnimator.SetTrigger("damage");
+                immortal = true;
+                StartCoroutine(IndicateImmortal());
+                yield return new WaitForSeconds(immortalTime);
+
+                immortal = false;
+            }
+            else
+            {
+                MyAnimator.SetLayerWeight(1, 0);
+                MyAnimator.SetTrigger("die");
+            }
         }
-        else
-        {
-            MyAnimator.SetLayerWeight(1, 0);
-            MyAnimator.SetTrigger("die");
-        }
-        yield return null;
+       
     }
 }
 

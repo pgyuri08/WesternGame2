@@ -1315,6 +1315,7 @@ MonoBehaviour:
   damageSources:
   - EnemyK
   - EnemyGun
+  immortalTime: 3
   groundPoints:
   - {fileID: 2105295912}
   - {fileID: 233669610}
