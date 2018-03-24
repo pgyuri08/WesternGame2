@@ -54,6 +54,8 @@ public abstract class Character : MonoBehaviour {
 
     public abstract IEnumerator TakeDamage();
 
+    public abstract void Death();
+
     public void SlideAttack()
     {
         SlideCollider.enabled = !SlideCollider.enabled;

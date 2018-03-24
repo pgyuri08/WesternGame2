@@ -914,6 +914,7 @@ GameObject:
   m_Component:
   - component: {fileID: 343858581}
   - component: {fileID: 343858582}
+  - component: {fileID: 343858583}
   m_Layer: 0
   m_Name: SlideCollider
   m_TagString: SlideDamage
@@ -957,6 +958,17 @@ EdgeCollider2D:
   - {x: 0.20922542, y: -0.09284276}
   - {x: 0.34887195, y: -0.18607008}
   - {x: 0.37768722, y: -0.315436}
+--- !u!114 &343858583
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 343858580}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e28eb731ca27994294a37e6e02469b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &439166912
 GameObject:
   m_ObjectHideFlags: 0
@@ -4111,6 +4123,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2109719464}
   - component: {fileID: 2109719465}
+  - component: {fileID: 2109719466}
   m_Layer: 0
   m_Name: KnifeCollider
   m_TagString: EnemyK
@@ -4156,3 +4169,14 @@ EdgeCollider2D:
   - {x: 1.079725, y: -0.12635946}
   - {x: 0.48302227, y: -0.912673}
   - {x: -0.3418774, y: -1.0644021}
+--- !u!114 &2109719466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2109719463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e28eb731ca27994294a37e6e02469b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

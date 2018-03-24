@@ -66,6 +66,8 @@ public class Player : Character {
     [SerializeField]
     private bool airControl;
 
+    private Vector2 startPos;
+
     // Use this for initialization
     public override void Start ()
     {
@@ -81,8 +83,9 @@ public class Player : Character {
         {
             if (transform.position.y <= -14f)
             {
-                myRigidbody.velocity = Vector2.zero;
-               // transform.position - startPos;
+
+                Death();
+
             }
             HandleInput();
 
@@ -243,6 +246,14 @@ public class Player : Character {
             }
         }
        
+    }
+
+    public override void Death()
+    {
+        myRigidbody.velocity = Vector2.zero;
+        MyAnimator.SetTrigger("idle");
+        health = 20;
+        transform.position = startPos;
     }
 }
 
