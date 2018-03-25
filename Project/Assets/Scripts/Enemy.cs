@@ -28,6 +28,11 @@ public class Enemy : Character {
     [SerializeField]
     private float meleeRange;
 
+    [SerializeField]
+    private Transform leftEdge;
+
+    [SerializeField]
+    private Transform rightEdge;
 
     public bool InMeleeRange
     {
@@ -115,8 +120,16 @@ public class Enemy : Character {
 
     public void Move()
     {
+        if ((GetDirection().x > 0 && transform.position.x < rightEdge.position.x) || GetDirection().x < 0 && transform.position.x > leftEdge.position.x)
+        {
             MyAnimator.SetFloat("speed", 1);
             transform.Translate(GetDirection() * (movementSpeed * Time.deltaTime));
+        }
+        else if(currentState is PatrolState)
+        {
+            ChangeDirection();
+        }
+            
     }
 
     public override void OnTriggerEnter2D(Collider2D other)

@@ -7,6 +7,7 @@ TagManager:
   - Edge
   - SlideDamage
   - EnemyK
+  - Enemy
   layers:
   - Default
   - TransparentFX
