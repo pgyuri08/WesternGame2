@@ -34,6 +34,8 @@ public class Enemy : Character {
     [SerializeField]
     private Transform rightEdge;
 
+    private Canvas healthCanvas;
+
     public bool InMeleeRange
     {
         get
@@ -51,7 +53,7 @@ public class Enemy : Character {
     {
         get
         {
-            return health <= 0;
+            return healthStat.CurrentValue <= 0;
         }
     }
 
@@ -64,6 +66,8 @@ public class Enemy : Character {
         base.Start();
         Player.Instance.Dead += new DeadEventHandler(RemoveTarget);
         ChangeState(new IdleState());
+
+        healthCanvas = transform.GetComponentInChildren<Canvas>();
     }
 	
 	// Update is called once per frame
@@ -159,7 +163,13 @@ public class Enemy : Character {
 
     public override IEnumerator TakeDamage()
     {
-        health -= 10;
+
+        if (!healthCanvas.isActiveAndEnabled)
+        {
+            healthCanvas.enabled = true;
+        }
+
+        healthStat.CurrentValue -= 10;
 
         if (!IsDead)
         {
@@ -175,5 +185,17 @@ public class Enemy : Character {
     public override void Death()
     {
         Destroy(gameObject);
+    }
+
+    public override void ChangeDirection()
+    {
+        Transform tmp = transform.FindChild("EnemyHealthBarCanvas").transform;
+        Vector3 pos = tmp.position;
+        tmp.SetParent(null);
+
+        base.ChangeDirection();
+
+        tmp.SetParent(transform);
+        tmp.position = pos;
     }
 }

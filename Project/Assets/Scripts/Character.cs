@@ -15,6 +15,9 @@ public abstract class Character : MonoBehaviour {
     protected int health;
 
     [SerializeField]
+    protected Stat healthStat;
+
+    [SerializeField]
     public EdgeCollider2D SlideCollider;
 
     [SerializeField]
@@ -43,6 +46,7 @@ public abstract class Character : MonoBehaviour {
     {
         facingRight = true;
         MyAnimator = GetComponent<Animator>();
+        healthStat.Initialize();
     }
 	
 	// Update is called once per frame
@@ -74,7 +78,7 @@ public abstract class Character : MonoBehaviour {
         KnifeCollider.enabled = true;
     }
 
-    public void ChangeDirection()
+    public virtual void ChangeDirection()
     {
         facingRight = !facingRight;
         transform.localScale = new Vector3(transform.localScale.x * -1, 1, 1);

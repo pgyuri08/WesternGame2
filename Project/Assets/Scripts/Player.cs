@@ -6,7 +6,6 @@ public delegate void DeadEventHandler();
 
 public class Player : Character {
 
-    //extra line
     public static Player instance;
 
     public event DeadEventHandler Dead;
@@ -27,12 +26,12 @@ public class Player : Character {
     {
         get
         {
-            if(health <= 0)
+            if(healthStat.CurrentValue <= 0)
             {
                 OnDead();
             }
 
-            return health <=0;
+            return healthStat.CurrentValue <=0;
         }
     }
 
@@ -73,8 +72,10 @@ public class Player : Character {
     {
         base.Start();
 
+        startPos = this.transform.position;
         spriteRenderer = GetComponent<SpriteRenderer>();
         myRigidbody = GetComponent<Rigidbody2D>();
+
 	}
 
     void Update()
@@ -228,7 +229,7 @@ public class Player : Character {
     {
         if (!immortal)
         {
-            health -= 10;
+            healthStat.CurrentValue -= 10;
 
             if (!IsDead)
             {
@@ -252,7 +253,7 @@ public class Player : Character {
     {
         myRigidbody.velocity = Vector2.zero;
         MyAnimator.SetTrigger("idle");
-        health = 20;
+        healthStat.CurrentValue = healthStat.MaxVal;
         transform.position = startPos;
     }
 }
