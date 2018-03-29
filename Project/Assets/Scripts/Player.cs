@@ -59,6 +59,12 @@ public class Player : Character {
 
     private bool jump;
 
+    private float direction;
+
+    private float btnHorizaontal;
+
+    private bool move;
+
     [SerializeField]
     private float jumpForce;
 
@@ -101,9 +107,20 @@ public class Player : Character {
 
             float horizontal = Input.GetAxis("Horizontal");
 
-            HandleMovement(horizontal);
+            if (move)
+            {
+                this.btnHorizaontal = Mathf.Lerp(btnHorizaontal, direction, Time.deltaTime * 2);
+                HandleMovement(btnHorizaontal);
+                Flip(direction); 
+            }
+            else
+            {
+                HandleMovement(horizontal);
 
-            Flip(horizontal);
+                Flip(horizontal);
+            }
+
+
 
             HandleLayers();
 
@@ -256,5 +273,30 @@ public class Player : Character {
         healthStat.CurrentValue = healthStat.MaxVal;
         transform.position = startPos;
     }
+
+    public void BtnJmp()
+    {
+        MyAnimator.SetTrigger("jump");
+        jump = true;
+    }
+
+    public void BtnSlide()
+    {
+        MyAnimator.SetTrigger("slide");
+    }
+
+    public void BtnMove(float direction)
+    {
+        this.direction = direction;
+        this.move = true;
+    }
+
+    public void BtnStopMove()
+    {
+        this.direction = 0;
+        this.btnHorizaontal = 0;
+        this.move = false;
+    }
+
 }
 
