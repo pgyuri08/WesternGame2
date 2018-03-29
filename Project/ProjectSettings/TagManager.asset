@@ -9,6 +9,7 @@ TagManager:
   - EnemyK
   - Enemy
   - EnemyHealthBarCanvas
+  - Coin
   layers:
   - Default
   - TransparentFX
