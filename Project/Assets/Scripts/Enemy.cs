@@ -184,6 +184,7 @@ public class Enemy : Character {
 
     public override void Death()
     {
+        Instantiate(GameManager.Instance.CoinPrefab, new Vector3(transform.position.x, transform.position.y + 2), Quaternion.identity);
         Destroy(gameObject);
     }
 
@@ -198,4 +199,5 @@ public class Enemy : Character {
         tmp.SetParent(transform);
         tmp.position = pos;
     }
+
 }

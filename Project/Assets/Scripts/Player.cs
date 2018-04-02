@@ -96,6 +96,8 @@ public class Player : Character {
             }
             HandleInput();
 
+
+
         }
     }
     // Update is called once per frame
@@ -119,8 +121,6 @@ public class Player : Character {
 
                 Flip(horizontal);
             }
-
-
 
             HandleLayers();
 
@@ -154,6 +154,8 @@ public class Player : Character {
             isGrounded = false;
             myRigidbody.AddForce(new Vector2(0, jumpForce));
             MyAnimator.SetTrigger("jump");
+
+            FindObjectOfType<AudioManager>().Play("PlayerJump");
         }
 
         MyAnimator.SetFloat("speed", Mathf.Abs(horizontal));
@@ -161,6 +163,7 @@ public class Player : Character {
         if (slide && !this.MyAnimator.GetCurrentAnimatorStateInfo(0).IsName("Slide"))
         {
             MyAnimator.SetBool("slide", true);
+            FindObjectOfType<AudioManager>().Play("Slide");
         }
         else if (!this.MyAnimator.GetCurrentAnimatorStateInfo(0).IsName("Slide"))
         {
@@ -251,9 +254,11 @@ public class Player : Character {
             if (!IsDead)
             {
                 MyAnimator.SetTrigger("damage");
+                FindObjectOfType<AudioManager>().Play("Die");
                 immortal = true;
                 StartCoroutine(IndicateImmortal());
                 yield return new WaitForSeconds(immortalTime);
+
 
                 immortal = false;
             }
@@ -300,10 +305,24 @@ public class Player : Character {
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if(other.gameObject.tag == "Coin")
+        if (other.gameObject.tag == "Coin")
         {
+            GameManager.Instance.CollectedCoins++;
+            StartCoroutine("ChangeLevel");
             Destroy(other.gameObject);
-        }    }
+            FindObjectOfType<AudioManager>().Play("Coin");
+        }
 
+        if (other.gameObject.tag == "Sign")
+        {
+            StartCoroutine("ChangeLevel");
+        }
+    }
+    IEnumerator ChangeLevel()
+    {
+        float fadeTime = GameObject.Find("World").GetComponent<Fading>().Beginfade(1);
+        yield return new WaitForSeconds(fadeTime);
+        Application.LoadLevel(Application.loadedLevel + 1);
+    }
 }
 
