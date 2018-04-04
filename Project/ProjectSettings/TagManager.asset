@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - EnemyHealthBarCanvas
   - Coin
+  - Sign
   layers:
   - Default
   - TransparentFX

@@ -308,7 +308,6 @@ public class Player : Character {
         if (other.gameObject.tag == "Coin")
         {
             GameManager.Instance.CollectedCoins++;
-            StartCoroutine("ChangeLevel");
             Destroy(other.gameObject);
             FindObjectOfType<AudioManager>().Play("Coin");
         }
